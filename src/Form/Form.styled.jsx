@@ -33,7 +33,7 @@ export const SubmitButton = styled.button`
   display: flex;
   justify-content: center;
   width: 140px;
-  margin-bottom: ${p => p.theme.space[1]}px;
+  margin-bottom: ${p => p.theme.space[4]}px;
   padding: ${p => p.theme.space[2]}px;
   color: ${p => p.theme.colors.nice};
   background-color: ${p => p.theme.colors.white};

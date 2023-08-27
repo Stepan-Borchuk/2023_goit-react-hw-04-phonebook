@@ -5,8 +5,10 @@ export const ContactsTitle = styled.h2`
   font-size: ${p => p.theme.fontSizes.l};
   font-weight: ${p => p.theme.fontWeights.bold};
   text-align: center;
+  margin-top: ${p => p.theme.space[3]}px;
 `;
 
 export const List = styled.ul`
   padding: ${p => p.theme.space[4]}px;
+  
 `;
