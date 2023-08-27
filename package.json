@@ -4,9 +4,11 @@
   "private": true,
   "homepage": "https://stepan-borchuk.github.io/2023_goit-react-hw-02-phonebook/",
   "dependencies": {
-       "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "formik": "^2.4.3",
+    "nanoid": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
