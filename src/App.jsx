@@ -2,6 +2,7 @@ import Form from 'Form/Form';
 import { Box } from './Box';
 import React, { Component } from 'react';
 import ContactList from './Contacts/ContactList';
+import { nanoid } from 'nanoid';
 
 class App extends Component {
   state = {
@@ -13,20 +14,20 @@ class App extends Component {
     ],
   };
 
-  formSubmitHandler = d => {
+  submitForm = (values, { resetForm }) => {
     const oldContact = this.state.contacts.find(
-      person => person.name.toLowerCase() === d.name.toLowerCase()
+      person => person.name.toLowerCase() === values.name.toLowerCase()
     );
 
     if (oldContact) {
-      alert(` ${d.name} is already in contacts.`);
+      alert(` ${values.name} is already in contacts.`);
       return;
     }
-    // console.log(d);
+
     const person = {
-      id: d.id,
-      name: d.name,
-      number: d.number,
+      id: nanoid(),
+      name: values.name,
+      number: values.number,
     };
 
     this.setState(prevState => {
@@ -34,6 +35,7 @@ class App extends Component {
         contacts: [person, ...prevState.contacts],
       };
     });
+    resetForm();
   };
 
   onDelete = id => {
@@ -62,7 +64,7 @@ class App extends Component {
         boxShadow="4px 11px 49px 1px #d7dead"
       >
         <h1>Phonebook</h1>
-        <Form onSubmit={this.formSubmitHandler} />
+        <Form submitForm={this.submitForm} />
 
         {this.state.contacts.length > 0 && (
           <ContactList

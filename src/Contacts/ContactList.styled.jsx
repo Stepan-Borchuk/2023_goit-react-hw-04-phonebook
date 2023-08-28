@@ -10,5 +10,4 @@ export const ContactsTitle = styled.h2`
 
 export const List = styled.ul`
   padding: ${p => p.theme.space[4]}px;
-  
 `;

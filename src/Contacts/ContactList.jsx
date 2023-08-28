@@ -1,14 +1,12 @@
 import { Filter } from 'Contacts/Filter/Filter';
 import { ContactListItem } from './ContactItem';
-import { ContactsTitle, List } from './ContactList.styled'
+import { ContactsTitle, List } from './ContactList.styled';
 import { Component } from 'react';
 
-
 class ContactList extends Component {
-
   state = {
-    filter: ''
-  }
+    filter: '',
+  };
 
   onFilter = evt => {
     this.setState({
@@ -16,12 +14,16 @@ class ContactList extends Component {
     });
   };
 
-  render() {
+  getFilteredContactsList = () => {
     const contactsInfo = this.props.contactsInfo;
-     const normalizedFilter = this.state.filter.toLowerCase();
-     const newContacts = contactsInfo.filter(person =>
-       person.name.toLowerCase().includes(normalizedFilter)
-     );
+    const normalizedFilter = this.state.filter.toLowerCase();
+    return contactsInfo.filter(({name}) =>
+      name.toLowerCase().includes(normalizedFilter)
+    );
+  };
+
+  render() {
+    const newContacts = this.getFilteredContactsList();
     return (
       <div>
         <ContactsTitle>Contacts list</ContactsTitle>
@@ -41,4 +43,4 @@ class ContactList extends Component {
   }
 }
 
-export default ContactList
+export default ContactList;
