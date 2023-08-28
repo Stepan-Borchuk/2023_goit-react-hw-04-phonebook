@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, Input, InputName, SubmitButton, Error } from './Form.styled';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import PropTypes from 'prop-types';
 
 const initialValues = { name: '', number: '' };
 
@@ -51,3 +52,7 @@ const Form = ({ submitForm }) => {
 };
 
 export default Form;
+
+Form.propTypes = {
+  submitForm: PropTypes.func,
+};

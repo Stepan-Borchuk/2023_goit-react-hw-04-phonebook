@@ -3,6 +3,7 @@ import { Box } from './Box';
 import React, { Component } from 'react';
 import ContactList from './Contacts/ContactList';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 
 class App extends Component {
   state = {
@@ -78,3 +79,9 @@ class App extends Component {
 }
 
 export default App;
+
+ContactList.propTypes = {
+  contactsInfo: PropTypes.arrayOf(PropTypes.shape),
+  deleteContact: PropTypes.func,
+  submitForm: PropTypes.func,
+};

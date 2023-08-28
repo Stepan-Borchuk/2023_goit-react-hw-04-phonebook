@@ -2,6 +2,7 @@ import { Filter } from 'Contacts/Filter/Filter';
 import { ContactListItem } from './ContactItem';
 import { ContactsTitle, List } from './ContactList.styled';
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class ContactList extends Component {
   state = {
@@ -30,7 +31,7 @@ class ContactList extends Component {
         <Filter filter={this.state.filter} onFilter={this.onFilter} />
 
         <List>
-          {newContacts.map(item => (
+          {newContacts?.map(item => (
             <ContactListItem
               item={item}
               key={item.id}
@@ -44,3 +45,9 @@ class ContactList extends Component {
 }
 
 export default ContactList;
+
+
+ContactList.propTypes = {
+  newContacts: PropTypes.arrayOf(PropTypes.shape),
+  deleteContact: PropTypes.func,
+};
