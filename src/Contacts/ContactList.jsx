@@ -1,51 +1,41 @@
 import { Filter } from 'Contacts/Filter/Filter';
 import { ContactListItem } from './ContactItem';
 import { ContactsTitle, List } from './ContactList.styled';
-import { Component } from 'react';
+import { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-class ContactList extends Component {
-  state = {
-    filter: '',
+const ContactList = ({ contactsInfo, deleteContact }) => {
+  const [filter, setFilter] = useState('');
+
+  const onFilter = evt => {
+    setFilter(evt.target.value);
   };
 
-  onFilter = evt => {
-    this.setState({
-      filter: evt.target.value,
-    });
-  };
-
-  getFilteredContactsList = () => {
-    const contactsInfo = this.props.contactsInfo;
-    const normalizedFilter = this.state.filter.toLowerCase();
-    return contactsInfo.filter(({name}) =>
-      name.toLowerCase().includes(normalizedFilter)
+  const newContacts = useMemo(() => {
+    return contactsInfo.filter(({ name }) =>
+      name.toLowerCase().includes(filter.toLowerCase())
     );
-  };
+  }, [contactsInfo, filter]);
 
-  render() {
-    const newContacts = this.getFilteredContactsList();
-    return (
-      <div>
-        <ContactsTitle>Contacts list</ContactsTitle>
-        <Filter filter={this.state.filter} onFilter={this.onFilter} />
+  return (
+    <div>
+      <ContactsTitle>Contacts list</ContactsTitle>
+      <Filter filter={filter} onFilter={onFilter} />
 
-        <List>
-          {newContacts?.map(item => (
-            <ContactListItem
-              item={item}
-              key={item.id}
-              deleteContact={this.props.deleteContact}
-            />
-          ))}
-        </List>
-      </div>
-    );
-  }
-}
+      <List>
+        {newContacts?.map(item => (
+          <ContactListItem
+            item={item}
+            key={item.id}
+            deleteContact={deleteContact}
+          />
+        ))}
+      </List>
+    </div>
+  );
+};
 
 export default ContactList;
-
 
 ContactList.propTypes = {
   newContacts: PropTypes.arrayOf(PropTypes.shape),
